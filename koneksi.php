@@ -1,12 +1,9 @@
 <?php
-$con = mysql_connect("localhost","carihij1_uhg","balon");
-if (!$con)
-{
-die('Could not connect: ' . mysql_error());
-}
-
-$db_selected = mysql_select_db('carihij1_hg.member', $con);
-if (!$db_selected) {
-    die ('Can\'t use foo : ' . mysql_error());
-}
+$mysql_hostname = "localhost";
+$mysql_user = "root";
+$mysql_password = "";
+$mysql_database = "carihij1_hg";
+$prefix = "";
+$bd = mysql_connect($mysql_hostname, $mysql_user, $mysql_password) or die("Gak bisa connect database bray!");
+mysql_select_db($mysql_database, $bd) or die("Gak bisa milih database bray !");
 ?>
