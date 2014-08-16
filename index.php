@@ -1,8 +1,14 @@
-<!doctype html>
+<?php
+  session_start();  
+  unset($_SESSION['SESS_MEMBER_ID']);
+  unset($_SESSION['SESS_FIRST_NAME']);
+  unset($_SESSION['SESS_LAST_NAME']);
+?>
+
 <html>
 <head>
 <meta charset="utf-8">
-<title>Untitled Document</title>
+<title>HONEYGUIDE MAHO SYSTEM</title>
 </head>
 
 <body>
@@ -11,25 +17,32 @@
 <form name="form1" method="post" action="ceklogin.php" enctype="multipart/form-data">
 <table width="200" border="0">
   <tr>
-    <td colspan="2" bgcolor="#FF0000"><?php
-	  	$err = $_REQUEST["err"];
-		if($err!=null)echo $err;
-	  ?></td>
+    <td colspan="2" bgcolor="#FF0000">
+         <?php
+      if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
+      echo '<ul class="err">';
+      foreach($_SESSION['ERRMSG_ARR'] as $msg) {
+        echo '<li>',$msg,'</li>'; 
+        }
+      echo '</ul>';
+      unset($_SESSION['ERRMSG_ARR']);
+      }
+    ?>
+  </td>
   </tr>
   <tr>
-    <td><strong>Username</strong></td>
-    <td><input type="text" name="myusername" id="myusername"></td>
+    <td width="116"><div align="right"><strong>Username</strong></div></td>
+    <td width="177"><input type="text" name="myusername" id="myusername"></td>
   </tr>
   <tr>
-    <td><strong>Password</strong></td>
-    <td><input type="text" name="mypassword" id="mypassword"></td>
+    <td><div align="right"><strong>Password</strong></div></td>
+    <td><input type="password" name="mypassword" id="mypassword"/></td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
-    <td><input type="submit" name="submit" id="submit" value="Submit"></td>
+    <td><div align="right"></div></td>
+    <td><input type="submit" name="submit" id="submit" value="Submit" /></td>
   </tr>
 </table>
 </form>
-<p>&nbsp;</p>
 </body>
 </html>
