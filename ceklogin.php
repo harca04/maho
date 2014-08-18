@@ -41,8 +41,13 @@
 			$_SESSION['SESS_MEMBER_ID'] = $member['mem_id'];
 			$_SESSION['SESS_FIRST_NAME'] = $member['myusername'];
 			$_SESSION['SESS_LAST_NAME'] = $member['mypassword'];
-			session_write_close();
-			header("location: home.php");
+			if($member['mem_id'] == 1){
+				session_write_close();
+				header("location: adminpage.php");
+			}else{
+				session_write_close();
+				header("location: superpage.php");
+			}
 			exit();
 		}else {
 			$errmsg_arr[] = 'gak ketemu username sama passwordnya bray !!';

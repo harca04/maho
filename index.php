@@ -8,7 +8,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>HONEYGUIDE MAHO SYSTEM</title>
+<link rel="icon" type="image/gif" href="http://hg.carihijab.com/dinan-favicon.ico" />
+<title>HONEYGUIDE REPORT SYSTEM</title>
 </head>
 
 <body>
