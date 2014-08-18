@@ -1,3 +1,7 @@
+<?php
+	require_once('checking.php');
+?>
+
 <!doctype html>
 <html>
 <head>

@@ -1,4 +1,48 @@
+<?php
+	require_once('checking.php');
+?>
+
 <html>
+<script language="javascript">
+function getkey(e)
+{
+if (window.event)
+   return window.event.keyCode;
+else if (e)
+   return e.which;
+else
+   return null;
+}
+function goodchars(e, goods, field)
+{
+var key, keychar;
+key = getkey(e);
+if (key == null) return true;
+ 
+keychar = String.fromCharCode(key);
+keychar = keychar.toLowerCase();
+goods = goods.toLowerCase();
+ 
+// check goodkeys
+if (goods.indexOf(keychar) != -1)
+    return true;
+// control keys
+if ( key==null || key==0 || key==8 || key==9 || key==27 )
+   return true;
+    
+if (key == 13) {
+    var i;
+    for (i = 0; i < field.form.elements.length; i++)
+        if (field == field.form.elements[i])
+            break;
+    i = (i + 1) % field.form.elements.length;
+    field.form.elements[i].focus();
+    return false;
+    };
+// else return false
+return false;
+}
+</script>
 <head>
 <meta charset="utf-8">
 <link rel="icon" type="image/gif" href="http://hg.carihijab.com/dinan-favicon.ico" />
@@ -39,7 +83,19 @@
   </tr>
 </table>
 </form>
+<?php
+	$counter=0;
+  	$z=0;
+	$qry1="SELECT * FROM tempsales WHERE tempid='$tempid'";
+	$qry2="SELECT * FROM menu WHERE idmenu='$tempid'";
+	$result=mysql_query($qry);
+	
+	$idproduk = $menu['idmenu'];
+    $jenismenu = $menu['jenismenu'];
+    $namamenu = $menu['namamenu'];
+    $harga = $menu['hargamenu'];
 
+?>
 <table width="645" border="1">
   <tr>
     <td align="center" valign="middle" bgcolor="#66FF66"><strong>ID Produk</strong></td>
@@ -49,16 +105,26 @@
     <td align="center" valign="middle" bgcolor="#66FF66"><strong>Terjual</strong></td>
     <td align="center" valign="middle" bgcolor="#66FF66"><strong>Total Harga</strong></td>
   </tr>
-  <?php ?>
+  <?php 
+  	if($counter>0){
+		for($z=0;$z<$counter;$z++){
+  ?>
   <tr>
+  	<?php 
+  		if($z<$counter){
+  	?>
     <td><?php $idproduk ?></td>
     <td><?php $jenismenu ?></td>
     <td><?php $namamenu ?></td>
     <td><?php $harga ?></td>
     <td><?php $terjual ?></td>
-    <td><?php $harga*$terjual ?></td>
+    <td><?php $total = $harga*$terjual ?></td>
+  	<?php 
+		}
+		$z=$z+1;
+	?>
   </tr>
-  <?php  ?>
+  <?php }} ?>
 </table>
 
 </body>

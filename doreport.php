@@ -46,7 +46,7 @@
 				exit();
 			}
 		}
-	}else {
+	}else{
 		die("lu kaco banget bray !!!");
 	}
 ?>
