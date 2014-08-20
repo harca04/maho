@@ -84,17 +84,14 @@ return false;
 </table>
 </form>
 <?php
+	$qry1="SELECT * FROM tempsales";
+	$result1 = mysql_query($qry1); 
 	$counter=0;
   	$z=0;
-	$qry1="SELECT * FROM tempsales WHERE tempid='$tempid'";
-	$qry2="SELECT * FROM menu WHERE idmenu='$tempid'";
-	$result=mysql_query($qry);
-	
-	$idproduk = $menu['idmenu'];
-    $jenismenu = $menu['jenismenu'];
-    $namamenu = $menu['namamenu'];
-    $harga = $menu['hargamenu'];
-
+	while($row - mysql_fetch_assoc($result1)){
+		$id[$counter] - $row['roll_number'];
+		$counter = $counter + 1;
+	}
 ?>
 <table width="645" border="1">
   <tr>
@@ -108,6 +105,13 @@ return false;
   <?php 
   	if($counter>0){
 		for($z=0;$z<$counter;$z++){
+			$idshow = $tempsales['tempid'];
+			$qry2="SELECT * FROM menu WHERE idmenu='$idshow'";
+
+    		$jenismenu = $menu['jenismenu'];
+    		$namamenu = $menu['namamenu'];
+    		$harga = $menu['hargamenu'];
+			$laku = $tempsales['tempjual'];
   ?>
   <tr>
   	<?php 
